@@ -1,0 +1,16 @@
+language: python
+
+python:
+    - "3.6"
+
+install:
+    - pip install --index-url=http://download.qt.io/snapshots/ci/pyside/5.9/latest/ pyside2 --trusted-host download.qt.io
+    - pip install -r requirements.txt
+    - pip install flake8 pytest pytest-cov codecov
+
+script:
+    - flake8
+    - python -m pytest --cov=quina
+
+after_success:
+    - codecov --token=88e58cf1-53c3-4dfe-b25d-68d6c17bbb8b

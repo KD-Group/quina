@@ -1,3 +1,8 @@
+# Custom ignores
+.idea/
+.pytest_cache/
+.pytest_reports/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

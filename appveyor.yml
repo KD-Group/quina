@@ -1,0 +1,23 @@
+environment:
+  CONDA_NPY: 113
+  CONDA_PY: 36
+  CONDA_INSTALL_LOCN: C:\\Miniconda36-x64
+
+install:
+  - cmd: call %CONDA_INSTALL_LOCN%\Scripts\activate.bat
+  - cmd: set PYTHONUNBUFFERED=1
+
+  - cmd: conda.exe config --set show_channel_urls true
+  - cmd: conda.exe config --remove channels defaults
+  - cmd: conda.exe config --add channels defaults
+  - cmd: conda.exe config --add channels conda-forge
+  - cmd: conda.exe update --yes --quiet conda
+
+  - cmd: conda.exe install --yes --file requirements.txt
+  - cmd: conda.exe install --yes --quiet flake8 pytest pytest-cov
+
+build: off
+
+test_script:
+  - flake8
+  - python -m pytest --cov=quina
