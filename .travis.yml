@@ -8,6 +8,11 @@ install:
     - pip install -r requirements.txt
     - pip install flake8 pytest pytest-cov codecov
 
+before_script:
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+  - sleep 3 # give xvfb some time to start
+
 script:
     - flake8
     - python -m pytest --cov=quina
