@@ -1,4 +1,5 @@
 __all__ = ('SignalSender', 'connect_with')
+import typing
 from PySide2.QtCore import QObject, Signal
 
 
@@ -9,10 +10,14 @@ class SignalWrapper(QObject):
 class SignalSender:
     def __init__(self):
         self.signal = SignalWrapper()
-        self.last_error: Exception = None
+        self.errors: typing.List[Exception] = []
+
+    @property
+    def last_error(self) -> Exception:
+        return self.errors[-1] if len(self.errors) else None
 
     def emit(self, *args, **kwargs):
-        self.last_error = None
+        self.errors.clear()
 
         # noinspection PyUnresolvedReferences
         self.signal.signal.emit((args, kwargs))
@@ -21,11 +26,14 @@ class SignalSender:
             raise self.last_error
 
     def connect(self, func, *args, **kwargs):
+        errors = self.errors
+
+        # never use `self` in slot function, which will cause a memory leak
         def slot_func(data, *_):
             try:
                 return func(*args, *data[0], **kwargs, **data[1])
             except Exception as e:
-                self.last_error = e
+                errors.append(e)
         slot_func.__name__ = getattr(func, '__name__', '<Lambda>')
 
         # noinspection PyUnresolvedReferences
