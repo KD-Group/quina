@@ -1,0 +1,68 @@
+import os
+
+
+template = """from ..base import ValueInterface
+from ..base import ChangedValueEntity
+from ..base import AbstractItem, AbstractProperty
+
+
+class {upper}TypeMixin(ValueInterface):
+    @property
+    def value(self) -> {type}:
+        return self.get_value()
+
+    @value.setter
+    def value(self, value):
+        self.set_value(value)
+
+
+class {upper}TypeProperty(AbstractProperty, {upper}TypeMixin):
+    pass
+
+
+class {upper}PropertyInterface(ChangedValueEntity):
+    @property
+    def {name}(self) -> {upper}TypeProperty:
+        return self.attach(creator={upper}TypeProperty, args=(
+            self.get_{name}_value, self.set_{name}_value, self.changed
+        ))
+
+    def get_{name}_value(self) -> {type}:
+        return self.get_value()
+
+    def set_{name}_value(self, value: {type}):
+        return self.set_value(value)
+
+
+class {upper}Item(AbstractItem, {upper}PropertyInterface):
+    pass
+"""
+
+items = [
+    {'upper': 'String', 'type': 'str', 'name': 'string'},
+    {'upper': 'Integer', 'type': 'int', 'name': 'integer'},
+    {'upper': 'Float', 'type': 'float', 'name': 'float'},
+    {'upper': 'List', 'type': 'list', 'name': 'list'},
+    {'upper': 'Dict', 'type': 'dict', 'name': 'dict'},
+    {'upper': 'StringList', 'type': 'typing.List[str]', 'name': 'string_list'},
+]
+
+init_template = 'from .{name}_type import {upper}TypeMixin, {upper}TypeProperty, {upper}PropertyInterface, {upper}Item'
+
+init_lines = []
+current = os.path.dirname(__file__)
+for item in items:
+    content = template.format(**item)
+    if 'typing' in item['type']:
+        content = 'import typing\n' + content
+
+    file_path = os.path.join(current, '{name}_type.py'.format(**item))
+    with open(file_path, 'w') as f:
+        f.write(content)
+
+    init_lines.append(init_template.format(**item))
+
+init_path = os.path.join(current, '__init__.py')
+with open(init_path, 'w') as f:
+    f.write('\n'.join(init_lines))
+    f.write('\n')
