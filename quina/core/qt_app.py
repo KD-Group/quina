@@ -2,6 +2,7 @@ import sys
 from PySide2 import QtCore, QtWidgets
 
 
+Qt = QtCore.Qt
 # noinspection PyArgumentList
 qt_app = QtWidgets.QApplication.instance()
 
