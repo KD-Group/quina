@@ -34,3 +34,8 @@ class Painter(QPainter):  # pragma: no cover
         size = text_size(text=text, font=self.font())
         rect = RectF.left_center_at(point + PointF(margin, 0), size)
         self.draw_text(rect=rect, text=text, color=color)
+
+    def draw_text_center(self, point: PointF, text, color: QColor = None):
+        size = text_size(text=text, font=self.font())
+        rect = RectF.center_at(point, size)
+        self.draw_text(rect=rect, text=text, color=color)
