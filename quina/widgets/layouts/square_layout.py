@@ -17,13 +17,9 @@ class SquareLayout(QLayout):
         self.setSpacing(0)
 
     def addItem(self, item: QLayoutItem):
-        if self.item is None:
-            self.replace_item(item)
-
-    def replace_item(self, item: QLayoutItem) -> typing.Optional[QLayoutItem]:
-        old_item, self.item = self.item, item
+        self.takeAt(0)
+        self.item = item
         self.setGeometry(self.geometry_rect)
-        return old_item
 
     def addWidget(self, w: QWidget):
         self.addItem(QWidgetItem(w))
@@ -70,6 +66,8 @@ class SquareLayout(QLayout):
 
         self.geometry_rect = QRect(proper_location, proper_size)
         self.item.setGeometry(self.geometry_rect)
+        self.item.widget().show()
+
         super().setGeometry(self.geometry_rect)
 
     def calculate_proper_size(self, from_size: QSize):

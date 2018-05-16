@@ -4,7 +4,7 @@ from ..layouts import SquareLayout
 from PySide2.QtWidgets import QWidget
 from PySide2.QtWidgets import QDockWidget
 from PySide2.QtWidgets import QMainWindow
-from PySide2.QtWidgets import QHBoxLayout, QLayout
+from PySide2.QtWidgets import QHBoxLayout
 
 
 class BaseWidget(QWidget, base.AttachMixin):
