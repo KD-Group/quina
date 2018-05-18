@@ -1,10 +1,16 @@
 import typing
+from pathlib import Path
 from ...model import base
 from ..layouts import SquareLayout
+from PySide2.QtCore import QPoint
+from PySide2.QtGui import QPixmap
+from PySide2.QtGui import QPicture
+from PySide2.QtGui import QPainter
 from PySide2.QtWidgets import QWidget
 from PySide2.QtWidgets import QDockWidget
 from PySide2.QtWidgets import QMainWindow
 from PySide2.QtWidgets import QHBoxLayout
+from PySide2.QtPrintSupport import QPrinter
 
 
 class BaseWidget(QWidget, base.AttachMixin):
@@ -58,3 +64,42 @@ class BaseWidget(QWidget, base.AttachMixin):
             self.set_enabled()
         else:
             self.set_disabled()
+
+    def export_to_pdf(self: 'BaseWidget', filename: Path):
+        width_a4 = 730
+        height_a4 = 1060
+
+        is_landscape = self.width() > self.height()
+        if is_landscape:
+            self.resize(height_a4, width_a4)  # landscape
+        else:
+            self.resize(width_a4, height_a4)  # portrait
+
+        # render widget to picture
+        picture = QPicture()
+        painter = QPainter(picture)
+        self.render(painter, QPoint(0, 0))
+        painter.end()
+
+        # set up PDF printer
+        printer = QPrinter()
+        printer.setOutputFormat(QPrinter.PdfFormat)
+        printer.setOutputFileName(str(filename))
+        if is_landscape:
+            printer.setOrientation(QPrinter.Landscape)
+
+        # draw picture on printer
+        painter = QPainter()
+        ok = painter.begin(printer)
+        if ok:
+            painter.drawPicture(0, 0, picture)
+            ok = painter.end()
+        return ok
+
+    def export_to_picture(self: 'BaseWidget', filename: Path):
+        picture = QPixmap(self.width(), self.height())
+        painter = QPainter(picture)
+        self.render(painter, QPoint(0, 0))
+        painter.end()
+
+        return picture.save(str(filename))
