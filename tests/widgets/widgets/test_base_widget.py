@@ -7,6 +7,7 @@ class MyTestCase(unittest.TestCase):
     cache_path = Path('.cache')
     mock_pdf_path = cache_path / 'mock.pdf'
     mock_png_path = cache_path / 'mock.png'
+    mock_svg_path = cache_path / 'mock.svg'
 
     def setUp(self):
         self.cache_path.mkdir(parents=True, exist_ok=True)
@@ -16,6 +17,8 @@ class MyTestCase(unittest.TestCase):
             self.mock_pdf_path.unlink()
         if self.mock_png_path.exists():
             self.mock_png_path.unlink()
+        if self.mock_svg_path.exists():
+            self.mock_svg_path.unlink()
 
     def test_set_central_widget(self):
         main_window = widgets.MainWindow()
@@ -43,6 +46,9 @@ class MyTestCase(unittest.TestCase):
 
         self.assertTrue(w.export_to_picture(self.mock_png_path))
         self.assertTrue(self.mock_png_path.exists())
+
+        self.assertTrue(w.export_to_svg(self.mock_svg_path))
+        self.assertTrue(self.mock_svg_path.exists())
 
 
 if __name__ == '__main__':

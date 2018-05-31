@@ -7,6 +7,7 @@ from PySide2.QtGui import QPixmap
 from PySide2.QtGui import QPicture
 from PySide2.QtGui import QPainter
 from PySide2.QtWidgets import QWidget
+from PySide2.QtSvg import QSvgGenerator
 from PySide2.QtWidgets import QDockWidget
 from PySide2.QtWidgets import QMainWindow
 from PySide2.QtWidgets import QHBoxLayout
@@ -103,3 +104,11 @@ class BaseWidget(QWidget, base.AttachMixin):
         painter.end()
 
         return picture.save(str(filename))
+
+    def export_to_svg(self, filename: Path) -> bool:
+        generator = QSvgGenerator()
+        generator.setFileName(str(filename))
+        generator.setSize(self.size())
+        generator.setViewBox(self.rect())
+        self.render(generator)
+        return True
