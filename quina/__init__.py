@@ -1,5 +1,5 @@
 __name__ = 'quina'
-__version__ = '0.0.4'
+__version__ = '0.0.5'
 __description__ = 'PySide2 MVVM Framework'
 __github__ = 'https://github.com/KD-Group/quina'
 

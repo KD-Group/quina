@@ -1,14 +1,11 @@
 environment:
-  CONDA_NPY: 113
-  CONDA_PY: 36
-  CONDA_INSTALL_LOCN: C:\\Miniconda36-x64
+  PYTHON: "C:\\Python36-x64"
 
 install:
-  - cmd: call %CONDA_INSTALL_LOCN%\Scripts\activate.bat
-  - cmd: set PYTHONUNBUFFERED=1
-  - cmd: conda.exe install -c conda-forge --yes --quiet PySide2
-  - cmd: conda.exe install --yes --file requirements.txt
-  - cmd: pip install flake8 pytest pytest-cov codecov
+  - SET "PYTHONHOME=%PYTHON%"
+  - SET "PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
+  - pip install --index-url=http://download.qt.io/snapshots/ci/pyside/5.9/latest/ pyside2 --trusted-host download.qt.io
+  - pip install flake8 pytest pytest-cov codecov
 
 build: off
 

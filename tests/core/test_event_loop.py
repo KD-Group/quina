@@ -12,7 +12,7 @@ class MyTestCase(unittest.TestCase):
         end_time = time()
 
         interval_in_seconds = end_time - start_time
-        self.assertAlmostEqual(interval_in_seconds, wait_time_in_second, delta=0.05)
+        self.assertAlmostEqual(interval_in_seconds, wait_time_in_second, delta=0.1)
 
 
 if __name__ == '__main__':
