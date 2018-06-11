@@ -1,14 +1,13 @@
-import quina
 from setuptools import setup, find_packages
 
 
 setup(
-    name=quina.__name__,
-    version=quina.__version__,
-    description=quina.__description__,
-    url=quina.__github__,
-    author=quina.__author__,
-    author_email=quina.__email__,
+    name='quina',
+    version='0.0.6',
+    description='PySide2 MVVM Framework',
+    url='https://github.com/KD-Group/quina',
+    author='KD-Group',
+    author_email='sfzhou.scut@gmail.com',
 
     license='GPL-3.0',
     classifiers=[
