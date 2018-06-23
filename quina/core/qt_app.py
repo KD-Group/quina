@@ -1,6 +1,10 @@
+import os
 import sys
+import PySide2
 from PySide2 import QtCore, QtWidgets
 
+pyside2_plugins = os.path.join(os.path.dirname(PySide2.__file__), "plugins")
+QtWidgets.QApplication.addLibraryPath(pyside2_plugins)
 
 Qt = QtCore.Qt
 # noinspection PyArgumentList

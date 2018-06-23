@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='quina',
-    version='0.0.6',
+    version='0.0.7',
     description='PySide2 MVVM Framework',
     url='https://github.com/KD-Group/quina',
     author='KD-Group',
