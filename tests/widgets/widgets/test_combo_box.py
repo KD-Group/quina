@@ -65,6 +65,19 @@ class MyTestCase(unittest.TestCase):
             self.assertEqual(len(times), 4)
             self.assertEqual(combo_box.count(), 0)
 
+    def test_combo_box_text_more_than_once(self):
+        with core.EventLoop(0.1):
+            combo_box = widgets.ComboBox()
+            combo_box.show()
+
+            mock_string_list_1 = ['TTL']
+            mock_string_list_2 = ['LVTTL', 'LVPECL', 'LVDS', 'ECL']
+            combo_box.string_list.value = mock_string_list_1
+            combo_box.string_list.value = mock_string_list_2
+            combo_box.string_list.value = mock_string_list_1
+
+            self.assertEqual(combo_box.string_list.value, mock_string_list_1)
+
 
 if __name__ == '__main__':
     unittest.main()
