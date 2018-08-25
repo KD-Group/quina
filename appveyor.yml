@@ -4,7 +4,7 @@ environment:
 install:
   - SET "PYTHONHOME=%PYTHON%"
   - SET "PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
-  - pip install --index-url=http://download.qt.io/snapshots/ci/pyside/5.9/latest/ pyside2 --trusted-host download.qt.io
+  - pip install -r requirements.txt
   - pip install flake8 pytest pytest-cov codecov
 
 build: off
