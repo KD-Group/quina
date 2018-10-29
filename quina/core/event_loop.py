@@ -3,7 +3,7 @@ from PySide2.QtCore import QEventLoop
 
 
 class EventLoop:
-    def __init__(self, timeout_in_second: float=None):
+    def __init__(self, timeout_in_second: float = None):
         self.event = QEventLoop(None)
         self.timeout_in_second = timeout_in_second
 

@@ -15,4 +15,6 @@ if not qt_app:
         # noinspection PyArgumentList
         QtWidgets.QApplication.addLibraryPath(QtCore.QDir.currentPath())
 
+    # only support Fusion Windows in PySide2, show in QtWidgets.QStyleFactory.keys()
+    QtWidgets.QApplication.setStyle('Fusion')
     qt_app = QtWidgets.QApplication([])

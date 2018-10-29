@@ -23,7 +23,7 @@ class BaseWidget(QWidget, base.AttachMixin):
     def center_widget(self, widget: 'BaseWidget'):
         self.assign(widget)
 
-    def set_central_widget(self, widget: 'BaseWidget', spacing: int=0, layout_type=QHBoxLayout):
+    def set_central_widget(self, widget: 'BaseWidget', spacing: int = 0, layout_type=QHBoxLayout):
         if self.center_widget is not None:
             self.layout().replaceWidget(self.center_widget, widget)
             self.center_widget.deleteLater()
