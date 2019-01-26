@@ -14,7 +14,7 @@ before_script:
 
 script:
     - flake8
-    - python -m pytest --cov=quina
+    - python -m pytest
 
 after_success:
     - codecov --token=88e58cf1-53c3-4dfe-b25d-68d6c17bbb8b
