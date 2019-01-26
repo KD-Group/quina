@@ -14,6 +14,7 @@ from .double_spin_box import DoubleSpinBox
 
 from .combo_box import ComboBox
 from .list_widget import ListWidget
+from .table_widget import TableWidget
 
 from .input_dialog import InputDialog
 

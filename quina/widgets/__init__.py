@@ -16,6 +16,7 @@ from .widgets import DoubleSpinBox
 
 from .widgets import ComboBox
 from .widgets import ListWidget
+from .widgets import TableWidget
 
 from .widgets import InputDialog
 
