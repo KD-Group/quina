@@ -1,3 +1,4 @@
 from .class_exec_interface import ClassExecInterface
 from .closed_signal_interface import ClosedSignalInterface
 from .excited_signal_interface import ExcitedSignalInterface
+from .message_box_interface import MessageBoxInterface

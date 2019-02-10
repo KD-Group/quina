@@ -2,10 +2,10 @@ from . import BaseWidget
 from ...core import EventLoop
 from PySide2.QtGui import QCloseEvent
 from PySide2.QtWidgets import QMainWindow
-from ..interfaces import ClosedSignalInterface, ClassExecInterface
+from ..interfaces import ClosedSignalInterface, ClassExecInterface, MessageBoxInterface
 
 
-class MainWindow(QMainWindow, BaseWidget, ClosedSignalInterface, ClassExecInterface):
+class MainWindow(QMainWindow, BaseWidget, ClosedSignalInterface, ClassExecInterface, MessageBoxInterface):
     def closeEvent(self, event: QCloseEvent):
         self.deal_with_close(event)
 
