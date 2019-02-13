@@ -1,4 +1,5 @@
 import unittest
+import time
 from quina import model
 
 
@@ -8,6 +9,7 @@ class MockProject(model.AbstractProject):
         self.ids = model.types.ListItem(self)
         self.books = model.types.StringListItem(self)
         self.scores = model.types.DictItem(self)
+        self.sell_time = model.types.TimePointItem(self)
 
 
 class MyTestCase(unittest.TestCase):
@@ -43,6 +45,11 @@ class MyTestCase(unittest.TestCase):
             'books': mock_books,
             'scores': mock_scores
         })
+
+        t_format = '%Y-%m-%d %H:%M:%S'
+        project.sell_time.time.update(t_format)
+        mock_time = time.strftime(t_format)
+        self.assertEqual(project.sell_time.time.value, mock_time)
 
 
 if __name__ == '__main__':
