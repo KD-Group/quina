@@ -28,6 +28,8 @@ class FloatPropertyInterface(ChangedValueEntity):
         return self.get_value()
 
     def set_float_value(self, value: float):
+        if not isinstance(value, float):
+            raise ValueError(f'UnSupport Set Value Type {type(value)} to Type float')
         return self.set_value(value)
 
 

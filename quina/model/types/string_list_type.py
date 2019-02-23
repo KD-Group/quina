@@ -29,6 +29,8 @@ class StringListPropertyInterface(ChangedValueEntity):
         return self.get_value()
 
     def set_string_list_value(self, value: typing.List[str]):
+        if not isinstance(value, list):
+            raise ValueError(f'UnSupport Set Value Type {type(value)} to Type list')
         return self.set_value(value)
 
 

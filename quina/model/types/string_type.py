@@ -28,6 +28,8 @@ class StringPropertyInterface(ChangedValueEntity):
         return self.get_value()
 
     def set_string_value(self, value: str):
+        if not isinstance(value, str):
+            raise ValueError(f'UnSupport Set Value Type {type(value)} to Type str')
         return self.set_value(value)
 
 
