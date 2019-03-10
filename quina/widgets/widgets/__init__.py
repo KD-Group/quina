@@ -8,6 +8,7 @@ from .dock_widget import DockWidget
 
 from .label import Label
 from .line_edit import LineEdit
+from .date_edit import DateEdit
 
 from .spin_box import SpinBox
 from .double_spin_box import DoubleSpinBox

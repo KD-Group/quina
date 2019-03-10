@@ -10,6 +10,7 @@ from .widgets import DockWidget
 
 from .widgets import Label
 from .widgets import LineEdit
+from .widgets import DateEdit
 
 from .widgets import SpinBox
 from .widgets import DoubleSpinBox
