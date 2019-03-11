@@ -28,8 +28,6 @@ class DictPropertyInterface(ChangedValueEntity):
         return self.get_value()
 
     def set_dict_value(self, value: dict):
-        if not isinstance(value, dict):
-            raise ValueError(f'UnSupport Set Value Type {type(value)} to Type dict')
         return self.set_value(value)
 
 

@@ -28,8 +28,6 @@ class IntegerPropertyInterface(ChangedValueEntity):
         return self.get_value()
 
     def set_integer_value(self, value: int):
-        if not isinstance(value, int):
-            raise ValueError(f'UnSupport Set Value Type {type(value)} to Type int')
         return self.set_value(value)
 
 
