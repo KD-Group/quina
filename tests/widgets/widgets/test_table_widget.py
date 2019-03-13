@@ -59,6 +59,22 @@ class MyTestCase(unittest.TestCase):
             self.table_widget.string_list.value = self.set_value_two
             self.assertTrue(executed[0])
 
+    def test_get_string_list_by_index(self):
+        with core.EventLoop(0.1):
+            mock_value_one = ['first', 1, 1.1]
+            mock_value_two = ['second', 2, 2.2]
+            self.table_widget.string_list.value = mock_value_one
+            self.table_widget.string_list.value = mock_value_two
+            self.assertEqual(self.table_widget.get_string_list_by_index(self.table_widget.index.value),
+                             [str(value) for value in mock_value_two])
+            self.table_widget.index.value = 0
+            self.assertEqual(self.table_widget.get_string_list_by_index(self.table_widget.index.value),
+                             [str(value) for value in mock_value_one])
+            with self.assertRaises(ValueError):
+                self.table_widget.get_string_list_by_index(-1)
+            with self.assertRaises(ValueError):
+                self.table_widget.get_string_list_by_index(2)
+
 
 if __name__ == '__main__':
     unittest.main()
