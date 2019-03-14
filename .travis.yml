@@ -24,4 +24,4 @@ deploy:
     password:
         secure: pyXci10kqGf9nGl2Dd/nclaaKOYDjyT2zFv+CKhVh7Thpy/u8asz3MKJNK4raV4gdtyzXLO+W/peOEj4W7n2Ku0mhdSDJLVShWnG298Fjs8Deju3anhpTpaRpq+eEfR/CEVaB+7e8LQ5Q1G7pUwPY71BcUsgagri7ajaIFqD5Kp/0cMGOxmJ4W3k+8Y4QQCO7+nME43dX/p6SDzEOcbTU0STSr7UOEw55eLSZVplsd82KIqXoZxjx5OvI3akWM/7BLHaWSjz9HLwjuQGFJfbjf4RwuJk61xdW1Ij8k/u9nULgk/jLN8uGwjhyBtDy4tswHyABiG/P32QOh06G9hJmKrOH8jG5UMmLUN+OPiMKxPUqHQg2HxBVPaNuhqPMza0L2faDfNU21DgIrtGuPV6j31NV+6yRGskjNLZRCwHq7K7UFcABth2ZKGSW1P9zJ3POoo0lgwxta2FcFG6jn1COGMqzql3sX8sBjx0jfEkMvguQQ4Mba/g7oy4BrQQvEq91edni/bO8fmtopPYSAFUNK9w8L682UI5fgX5/OOHaAhXb8rPGPNAivyd4ltLZMWu7dzSQZ2vBA6+QL5bM5nYhnwJcZivEAJHgLWDLb2FChnE3AxYaZ9S+hOq7tFYfPJshta5lGTeGsiz3j6moL9tFhMePpMJnakuzd9avtA9BxA=
     on:
-        branch: master
+        tags: true
