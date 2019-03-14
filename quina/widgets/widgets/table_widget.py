@@ -5,6 +5,7 @@ from PySide2.QtWidgets import QTableWidget, QAbstractItemView, QTableWidgetItem
 from ...model import WidgetStringItem, WidgetIndexItem
 from ...model.types import StringListItem
 from ..interfaces import ExcitedSignalInterface
+from ... import SignalSender
 
 
 class TableWidget(QTableWidget,
@@ -14,7 +15,8 @@ class TableWidget(QTableWidget,
                   WidgetIndexItem,
                   StringListItem
                   ):
-    _header_labels: list
+    _header_labels = []
+    header_labels_changed = SignalSender()
 
     def set_index_value(self, value: int):
         self.selectRow(value or 0)
@@ -96,13 +98,15 @@ class TableWidget(QTableWidget,
 
     @property
     def header_labels(self) -> typing.List[str]:
-        return self._header_labels or []
+        return self._header_labels
 
     @header_labels.setter
     def header_labels(self, labels: list):
-        self.setColumnCount(len(labels))
-        self.setHorizontalHeaderLabels(labels)
-        self._header_labels = labels
+        if labels != self.header_labels:
+            self.setColumnCount(len(labels))
+            self.setHorizontalHeaderLabels(labels)
+            self._header_labels = labels
+            self.header_labels_changed.emit(self.header_labels)
 
     def auto_resize_column_width(self):
         if self.auto_resize:

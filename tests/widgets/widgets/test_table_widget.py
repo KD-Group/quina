@@ -75,6 +75,22 @@ class MyTestCase(unittest.TestCase):
             with self.assertRaises(ValueError):
                 self.table_widget.get_string_list_by_index(2)
 
+    def test_header_labels_changed(self):
+        with core.EventLoop(0.1):
+            changed_times = []
+            executed = [False]
+
+            @core.connect_with(self.table_widget.header_labels_changed)
+            def header_labels_changed(head_labels):
+                executed[0] = True
+                if len(changed_times) == 0:
+                    self.assertEqual(head_labels, mock_labels)
+                changed_times.append(len(changed_times))
+
+            mock_labels = ['a', 'b', 'c']
+            self.table_widget.header_labels = mock_labels
+            self.assertTrue(executed[0])
+
 
 if __name__ == '__main__':
     unittest.main()
