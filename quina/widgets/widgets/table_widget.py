@@ -113,7 +113,7 @@ class TableWidget(QTableWidget,
             self.resizeColumnsToContents()
             col_count = self.columnCount()
             col_width = sum(list([self.columnWidth(i) for i in range(col_count)]))
-            if col_width < self.width():
+            if col_width != 0 and col_width < self.width():
                 for i in range(col_count):
                     self.setColumnWidth(i, self.columnWidth(i) / col_width * self.width())
 
