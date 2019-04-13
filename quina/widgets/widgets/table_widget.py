@@ -45,9 +45,7 @@ class TableWidget(QTableWidget,
         self.string_list.check_change()
 
     def get_string_list_by_index(self, index: int):
-        if index < 0 or index >= self.row_count:
-            raise ValueError(f'Index Value {index} Out of Range')
-        return [self.item(index, col).text() for col in range(self.column_count)]
+        return [self.item(index, col).text() if self.item(index, col) else None for col in range(self.column_count)]
 
     @property
     def row_count(self):
