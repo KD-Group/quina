@@ -70,8 +70,8 @@ class MyTestCase(unittest.TestCase):
             self.table_widget.index.value = 0
             self.assertEqual(self.table_widget.get_string_list_by_index(self.table_widget.index.value),
                              [str(value) for value in mock_value_one])
-            with self.assertRaises(ValueError):
-                self.table_widget.get_string_list_by_index(-1)
+            self.assertEqual(self.table_widget.get_string_list_by_index(-1), [])
+
             with self.assertRaises(ValueError):
                 self.table_widget.get_string_list_by_index(2)
 
